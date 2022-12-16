@@ -1,0 +1,21 @@
+#Create and use database
+create database office;
+use office;
+
+#Create employee table
+CRETAE TBALE employee(id INT,name STRING,dept STRING,yoj INt,salary INT)
+Row FORMAT DELIMITED FIELDS TERMINATED BY ',' TBLPROPERTIES ("skip.header.line.count"="1");
+
+#Load data into employee table
+LOAD DATA LOCAL INPATH '/root/EmpData.csv' INTO TABLE employee;
+
+#Run queries in employee table
+SELECT * FROM employee;
+SELECT count(*) FROM employee;
+
+#Exports to HDFS directory
+INSERT OVERWRITE DIRECTORY '/user/prathibha/HiveOutput' ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM emp.employee;
+#Exports to LOCAL directory
+INSERT OVERWRITE LOCAL DIRECTORY '/root/HiveOutput' ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM emp.employee;
