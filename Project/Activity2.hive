@@ -1,0 +1,6 @@
+CREATE TABLE episodeivfile(line STRING);
+LOAD DATA LOCAL INPATH '/episodeIV_dialogue.txt' INTO TABLE episodeivfile;
+CREATE TABLE diacount_containsluke AS
+SELECT count(*) AS count FROM 
+(SELECT split(line, '\t')[1] AS name FROM episodeIVfile) n where n.name rlike '.*Luke.*' ;
+SELECT * FROM diacount_containsLuke;

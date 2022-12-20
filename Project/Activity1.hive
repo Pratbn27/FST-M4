@@ -1,0 +1,9 @@
+CREATE TABLE files(line STRING); 
+LOAD DATA LOCAL INPATH '/episodeV_dialogue.txt' INTO TABLE files;
+LOAD DATA LOCAL INPATH '/episodeIV_dialogue.txt' INTO TABLE files;
+LOAD DATA LOCAL INPATH '/episodeVI_dialogue.txt' INTO TABLE files;
+CREATE TABLE dia_Count AS
+SELECT name,count(1) AS count FROM
+(SELECT spilt(line,'\t')[0] AS name FROM files) n GROUP BY n.name ORDER BY count DESC;
+
+SELECT * FROM dia_Count;
